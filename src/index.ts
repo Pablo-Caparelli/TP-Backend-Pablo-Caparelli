@@ -13,4 +13,15 @@ const connectMongoDb = async () => {
   }
 };
 
+const bookSchema = new Schema({
+  title: { type: String, required: true, unique: true },
+  author: { type: String, required: true },
+  publishedYear: { type: Number, required: true },
+  gender: { type: String, required: true },
+  language: { type: String, required: true },
+  country: { type: String, required: true },
+});
+
+const Book = model("Book", bookSchema);
+
 connectMongoDb();
