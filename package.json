@@ -1,0 +1,27 @@
+{
+  "name": "tp-backend-pablo-caparelli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "build": "tsc",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pablo-Caparelli/TP-Backend-Pablo-Caparelli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Pablo-Caparelli/TP-Backend-Pablo-Caparelli/issues"
+  },
+  "homepage": "https://github.com/Pablo-Caparelli/TP-Backend-Pablo-Caparelli#readme",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
