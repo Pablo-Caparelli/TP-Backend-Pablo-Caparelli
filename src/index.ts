@@ -24,4 +24,29 @@ const bookSchema = new Schema({
 
 const Book = model("Book", bookSchema);
 
+const addBook = async () => {
+  try {
+  } catch (error) {}
+};
+
+const getBooks = async () => {
+  try {
+  } catch (error) {}
+};
+
+const getBook = async (id: string) => {
+  try {
+  } catch (error) {}
+};
+
+const updateBook = async (id: string) => {
+  try {
+  } catch (error) {}
+};
+
+const deleteBook = async (id: string) => {
+  try {
+  } catch (error) {}
+};
+
 connectMongoDb();
