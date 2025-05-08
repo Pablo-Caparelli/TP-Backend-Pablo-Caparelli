@@ -94,14 +94,14 @@ const main = async () => {
   connectMongoDb();
 
   const savedBook = await addBook({
-    title: "Las uvas de la ira",
-    author: "John Steinbeck",
-    publishedYear: 1939,
-    gender: "Novela",
+    title: "Jorge Luis Borges",
+    author: "El Aleph",
+    publishedYear: 1949,
+    gender: "Cuentos",
     language: "Español",
-    country: "Estados Unidos de América",
+    country: "Argentina",
     coverImage:
-      "https://images.cdn3.buscalibre.com/fit-in/360x360/d5/cf/d5cf867e1bbaef171c4f0b4243351aff.jpg",
+      "https://images.cdn1.buscalibre.com/fit-in/360x360/78/8f/788f1c87e9e3cbfd648353112dcbbbbf.jpg",
     available: true,
   });
 
