@@ -90,32 +90,45 @@ const addBook = async (newBook: IBook) => {
   }
 };
 
+const getBooks = async () => {
+  try {
+    const Books = await Book.find();
+    return {
+      sucess: true,
+      data: Books,
+      message: "Books successfully recovered",
+    };
+  } catch (error: any) {
+    return {
+      sucess: false,
+      error: error.message,
+    };
+  }
+};
+
 const main = async () => {
   connectMongoDb();
 
-  const savedBook = await addBook({
-    title: "Jorge Luis Borges",
-    author: "El Aleph",
-    publishedYear: 1949,
-    gender: "Cuentos",
-    language: "Español",
-    country: "Argentina",
-    coverImage:
-      "https://images.cdn1.buscalibre.com/fit-in/360x360/78/8f/788f1c87e9e3cbfd648353112dcbbbbf.jpg",
-    available: true,
-  });
+  // const savedBook = await addBook({
+  //   title: "Jorge Luis Borges",
+  //   author: "El Aleph",
+  //   publishedYear: 1949,
+  //   gender: "Cuentos",
+  //   language: "Español",
+  //   country: "Argentina",
+  //   coverImage:
+  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/78/8f/788f1c87e9e3cbfd648353112dcbbbbf.jpg",
+  //   available: true,
+  // });
 
-  console.log(savedBook);
+  const Books = await getBooks();
+
+  console.log(Books);
 };
 
 main();
 
 connectMongoDb();
-
-const getBooks = async () => {
-  try {
-  } catch (error) {}
-};
 
 const getBook = async (id: string) => {
   try {
