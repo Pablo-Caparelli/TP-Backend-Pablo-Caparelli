@@ -13,21 +13,104 @@ const connectMongoDb = async () => {
   }
 };
 
-const bookSchema = new Schema({
-  title: { type: String, required: true, unique: true },
-  author: { type: String, required: true },
-  publishedYear: { type: Number, required: true },
-  gender: { type: String, required: true },
-  language: { type: String, required: true },
-  country: { type: String, required: true },
-});
+interface IBook {
+  title: string;
+  author: string;
+  publishedYear: number;
+  gender: string;
+  language: string;
+  country: string;
+  coverImage: string;
+  available: boolean;
+}
+
+const bookSchema = new Schema(
+  {
+    title: { type: String, required: true, unique: true },
+    author: { type: String, required: true },
+    publishedYear: { type: Number, required: true },
+    gender: { type: String, required: true },
+    language: { type: String, required: true },
+    country: { type: String, required: true },
+    coverImage: { type: String, required: true },
+    available: { type: Boolean, default: true },
+  },
+  {
+    versionKey: false,
+  }
+);
 
 const Book = model("Book", bookSchema);
 
-const addBook = async () => {
+const addBook = async (newBook: IBook) => {
   try {
-  } catch (error) {}
+    const {
+      title,
+      author,
+      publishedYear,
+      gender,
+      language,
+      country,
+      coverImage,
+      available,
+    } = newBook;
+    if (
+      !title ||
+      !author ||
+      !publishedYear ||
+      !gender ||
+      !language ||
+      !country ||
+      !coverImage ||
+      !available
+    ) {
+      return { sucess: false, error: "Invalid data" };
+    }
+    const newBookToDb = new Book({
+      title,
+      author,
+      publishedYear,
+      gender,
+      language,
+      country,
+      coverImage,
+      available,
+    });
+    await newBookToDb.save();
+    return {
+      sucess: true,
+      data: newBookToDb,
+      message: "Book added successfully",
+    };
+  } catch (error: any) {
+    return {
+      sucess: false,
+      error: error.message,
+    };
+  }
 };
+
+const main = async () => {
+  connectMongoDb();
+
+  const savedBook = await addBook({
+    title: "Las uvas de la ira",
+    author: "John Steinbeck",
+    publishedYear: 1939,
+    gender: "Novela",
+    language: "Español",
+    country: "Estados Unidos de América",
+    coverImage:
+      "https://images.cdn3.buscalibre.com/fit-in/360x360/d5/cf/d5cf867e1bbaef171c4f0b4243351aff.jpg",
+    available: true,
+  });
+
+  console.log(savedBook);
+};
+
+main();
+
+connectMongoDb();
 
 const getBooks = async () => {
   try {
@@ -48,5 +131,3 @@ const deleteBook = async (id: string) => {
   try {
   } catch (error) {}
 };
-
-connectMongoDb();
