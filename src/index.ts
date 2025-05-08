@@ -128,6 +128,28 @@ const getBook = async (id: string) => {
   }
 };
 
+const updateBook = async (id: string, newData: Partial<IBook>) => {
+  try {
+    const updatedBook = await Book.findByIdAndUpdate(id, newData, {
+      new: true,
+    });
+    if (!updateBook)
+      return {
+        sucess: false,
+        message: "Book not found",
+      };
+    return {
+      sucess: true,
+      message: "Book successfully updated",
+    };
+  } catch (error: any) {
+    return {
+      sucess: false,
+      error: error.message,
+    };
+  }
+};
+
 const main = async () => {
   connectMongoDb();
 
@@ -143,20 +165,18 @@ const main = async () => {
   //   available: true,
   // });
 
-  const Book = await getBook("681ca52bab3560fb0a40d969");
-  console.log(Book);
+  // const Books = await getBooks();
+  // console.log(Books);
+
+  // const Book = await getBook("681ca52bab3560fb0a40d969");
+  // console.log(Book);
+
+  // const updatedBook = await updateBook("681bf7d9c2fb9df86f1ad0de", {
+  //   available: false,
+  // });
+  // console.log(updatedBook);
 };
 
 main();
 
 connectMongoDb();
-
-const updateBook = async (id: string) => {
-  try {
-  } catch (error) {}
-};
-
-const deleteBook = async (id: string) => {
-  try {
-  } catch (error) {}
-};
