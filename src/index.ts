@@ -106,6 +106,28 @@ const getBooks = async () => {
   }
 };
 
+const getBook = async (id: string) => {
+  try {
+    const foundBook = await Book.findById(id);
+    if (!foundBook) {
+      return {
+        sucess: true,
+        message: "Book not found",
+      };
+    }
+    return {
+      success: true,
+      data: foundBook,
+      message: "Book successfully recovered",
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      message: "Error getting the book",
+    };
+  }
+};
+
 const main = async () => {
   connectMongoDb();
 
@@ -121,19 +143,13 @@ const main = async () => {
   //   available: true,
   // });
 
-  const Books = await getBooks();
-
-  console.log(Books);
+  const Book = await getBook("681ca52bab3560fb0a40d969");
+  console.log(Book);
 };
 
 main();
 
 connectMongoDb();
-
-const getBook = async (id: string) => {
-  try {
-  } catch (error) {}
-};
 
 const updateBook = async (id: string) => {
   try {
