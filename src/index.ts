@@ -202,8 +202,8 @@ const main = async () => {
   // });
   // console.log(updatedBook);
 
-  const deletedBook = await deleteBook("681e02ed86682e22a95dedab");
-  console.log(deletedBook);
+  // const deletedBook = await deleteBook("681d44a8e27a8373002381c9");
+  // console.log(deletedBook);
 };
 
 main();
