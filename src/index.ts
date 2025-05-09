@@ -64,7 +64,7 @@ const addBook = async (newBook: IBook) => {
       !coverImage ||
       !available
     ) {
-      return { sucess: false, error: "Invalid data" };
+      return { success: false, error: "Invalid data" };
     }
     const newBookToDb = new Book({
       title,
@@ -78,13 +78,13 @@ const addBook = async (newBook: IBook) => {
     });
     await newBookToDb.save();
     return {
-      sucess: true,
+      success: true,
       data: newBookToDb,
       message: "Book added successfully",
     };
   } catch (error: any) {
     return {
-      sucess: false,
+      success: false,
       error: error.message,
     };
   }
@@ -94,13 +94,13 @@ const getBooks = async () => {
   try {
     const Books = await Book.find();
     return {
-      sucess: true,
+      success: true,
       data: Books,
       message: "Books successfully recovered",
     };
   } catch (error: any) {
     return {
-      sucess: false,
+      success: false,
       error: error.message,
     };
   }
@@ -111,7 +111,7 @@ const getBook = async (id: string) => {
     const foundBook = await Book.findById(id);
     if (!foundBook) {
       return {
-        sucess: true,
+        success: true,
         message: "Book not found",
       };
     }
@@ -135,48 +135,75 @@ const updateBook = async (id: string, newData: Partial<IBook>) => {
     });
     if (!updateBook)
       return {
-        sucess: false,
+        success: false,
         message: "Book not found",
       };
     return {
-      sucess: true,
+      success: true,
+      data: updatedBook,
       message: "Book successfully updated",
     };
   } catch (error: any) {
     return {
-      sucess: false,
-      error: error.message,
+      success: false,
+      message: error.message,
+    };
+  }
+};
+
+const deleteBook = async (id: string) => {
+  try {
+    const deletedBook = await Book.findByIdAndDelete(id);
+    if (!deletedBook) {
+      return {
+        success: false,
+        message: "Book not found",
+      };
+    }
+    return {
+      success: true,
+      data: deletedBook,
+      message: "Book successfully deleted",
+    };
+  } catch (error: any) {
+    console.error("Error deleting book:", error);
+    return {
+      success: false,
+      message: error.message,
     };
   }
 };
 
 const main = async () => {
-  connectMongoDb();
+  await connectMongoDb();
 
   // const savedBook = await addBook({
-  //   title: "Jorge Luis Borges",
-  //   author: "El Aleph",
-  //   publishedYear: 1949,
-  //   gender: "Cuentos",
+  //   title: "Adán Buenosayres",
+  //   author: "Leopoldo Marechal",
+  //   publishedYear: 1948,
+  //   gender: "Novela",
   //   language: "Español",
   //   country: "Argentina",
   //   coverImage:
-  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/78/8f/788f1c87e9e3cbfd648353112dcbbbbf.jpg",
+  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/30/25/302506f0f60e204cc5a36dbff6f51322.jpg",
   //   available: true,
   // });
+
+  // console.log(savedBook);
 
   // const Books = await getBooks();
   // console.log(Books);
 
-  // const Book = await getBook("681ca52bab3560fb0a40d969");
+  // const Book = await getBook("681d3d1baa98ecbe987dc068");
   // console.log(Book);
 
-  // const updatedBook = await updateBook("681bf7d9c2fb9df86f1ad0de", {
+  // const updatedBook = await updateBook("681dff09fc0b558e26de76a9", {
   //   available: false,
   // });
   // console.log(updatedBook);
+
+  const deletedBook = await deleteBook("681e02ed86682e22a95dedab");
+  console.log(deletedBook);
 };
 
 main();
-
-connectMongoDb();
