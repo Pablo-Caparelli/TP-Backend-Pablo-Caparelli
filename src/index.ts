@@ -178,14 +178,14 @@ const main = async () => {
   await connectMongoDb();
 
   // const savedBook = await addBook({
-  //   title: "Adán Buenosayres",
-  //   author: "Leopoldo Marechal",
-  //   publishedYear: 1948,
-  //   gender: "Novela",
+  //   title: "Ficciones",
+  //   author: "Jorge Luis Borges",
+  //   publishedYear: 1944,
+  //   gender: "Cuentos",
   //   language: "Español",
   //   country: "Argentina",
   //   coverImage:
-  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/30/25/302506f0f60e204cc5a36dbff6f51322.jpg",
+  //     "https://images.cdn3.buscalibre.com/fit-in/360x360/46/85/4685286dbc1ec2013245afe1d537acfb.jpg",
   //   available: true,
   // });
 
@@ -194,10 +194,10 @@ const main = async () => {
   // const Books = await getBooks();
   // console.log(Books);
 
-  // const Book = await getBook("681d3d1baa98ecbe987dc068");
+  // const Book = await getBook("681cfa5f12508f386a26ed8c");
   // console.log(Book);
 
-  // const updatedBook = await updateBook("681dff09fc0b558e26de76a9", {
+  // const updatedBook = await updateBook("681e0add5106818c667e2504", {
   //   available: false,
   // });
   // console.log(updatedBook);

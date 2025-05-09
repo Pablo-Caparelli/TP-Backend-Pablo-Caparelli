@@ -15,10 +15,7 @@ Este proyecto permite realizar operaciones CRUD (Crear, Leer, Actualizar, Elimin
 
 1. **Clona el repositorio:**
 
-   ```bash
-   git clone https://github.com/tu-usuario/book-management-api.git
-   cd book-management-api
-   ```
+   https://github.com/Pablo-Caparelli/TP-Backend-Pablo-Caparelli.git
 
 2. **Instala dependencias:**
 
@@ -29,7 +26,7 @@ Este proyecto permite realizar operaciones CRUD (Crear, Leer, Actualizar, Elimin
 3. **Crea un archivo `.env` con tu URI de MongoDB:**
 
    ```env
-   URI_DB=mongodb+srv://usuario:contraseña@cluster.mongodb.net/mydb?retryWrites=true&w=majority
+   URI_DB=URI_DB=mongodb://localhost:27017/db-utnbackend-books (en local)
    ```
 
 ---
