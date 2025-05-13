@@ -169,14 +169,14 @@ const main = async () => {
   await connectMongoDb();
 
   // const savedBook = await addBook({
-  //   title: "La Perla",
-  //   author: "John Steinbeck",
-  //   publishedYear: 1947,
-  //   gender: "Novela",
+  //   title: "Antes del fin",
+  //   author: "Ernesto Sabato",
+  //   publishedYear: 1998,
+  //   gender: "Ensayo",
   //   language: "Español",
-  //   country: "Estados Unidos de América",
+  //   country: "Argentina",
   //   coverImage:
-  //     "https://images.cdn2.buscalibre.com/fit-in/360x360/71/5d/715db4e1128a6ce7e5fa7d501faf774f.jpg",
+  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/4e/b8/4eb8a78cb7dbfba5cfab95b7308c38d9.jpg",
   //   available: true,
   // });
 
@@ -185,15 +185,15 @@ const main = async () => {
   // const Books = await getBooks();
   // console.log(Books);
 
-  const Book = await getBook("681ca52bab3560fb0a40d969");
-  console.log(Book);
+  // const Book = await getBook("68239dfbd2d2c93c06200527");
+  // console.log(Book);
 
-  // const updatedBook = await updateBook("68224a3b9c7ba582129d9501", {
+  // const updatedBook = await updateBook("68239dfbd2d2c93c06200527", {
   //   available: false,
   // });
   // console.log(updatedBook);
 
-  // const deletedBook = await deleteBook("682348c1adf27befdcc7af39");
+  // const deletedBook = await deleteBook("68239dfbd2d2c93c06200527");
   // console.log(deletedBook);
 };
 
