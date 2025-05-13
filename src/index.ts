@@ -42,7 +42,7 @@ const bookSchema = new Schema(
 
 const Book = model("Book", bookSchema);
 
-const addBook = async (newBook: IBook) => {
+const addBook = async (newBookData: IBook) => {
   try {
     const {
       title,
@@ -53,20 +53,9 @@ const addBook = async (newBook: IBook) => {
       country,
       coverImage,
       available,
-    } = newBook;
-    if (
-      !title ||
-      !author ||
-      !publishedYear ||
-      !gender ||
-      !language ||
-      !country ||
-      !coverImage ||
-      !available
-    ) {
-      return { success: false, error: "Invalid data" };
-    }
-    const newBookToDb = new Book({
+    } = newBookData;
+
+    const book = new Book({
       title,
       author,
       publishedYear,
@@ -76,16 +65,18 @@ const addBook = async (newBook: IBook) => {
       coverImage,
       available,
     });
-    await newBookToDb.save();
+    await book.save();
+
     return {
       success: true,
-      data: newBookToDb,
-      message: "Book added successfully",
+      data: book,
+      message: "Book created successfully",
     };
-  } catch (error: any) {
+  } catch (error) {
+    const e = error as Error;
     return {
       success: false,
-      error: error.message,
+      error: e.message,
     };
   }
 };
@@ -133,7 +124,7 @@ const updateBook = async (id: string, newData: Partial<IBook>) => {
     const updatedBook = await Book.findByIdAndUpdate(id, newData, {
       new: true,
     });
-    if (!updateBook)
+    if (!updatedBook)
       return {
         success: false,
         message: "Book not found",
@@ -178,14 +169,14 @@ const main = async () => {
   await connectMongoDb();
 
   // const savedBook = await addBook({
-  //   title: "Ficciones",
-  //   author: "Jorge Luis Borges",
-  //   publishedYear: 1944,
-  //   gender: "Cuentos",
+  //   title: "La Perla",
+  //   author: "John Steinbeck",
+  //   publishedYear: 1947,
+  //   gender: "Novela",
   //   language: "Español",
-  //   country: "Argentina",
+  //   country: "Estados Unidos de América",
   //   coverImage:
-  //     "https://images.cdn3.buscalibre.com/fit-in/360x360/46/85/4685286dbc1ec2013245afe1d537acfb.jpg",
+  //     "https://images.cdn2.buscalibre.com/fit-in/360x360/71/5d/715db4e1128a6ce7e5fa7d501faf774f.jpg",
   //   available: true,
   // });
 
@@ -194,15 +185,15 @@ const main = async () => {
   // const Books = await getBooks();
   // console.log(Books);
 
-  // const Book = await getBook("681cfa5f12508f386a26ed8c");
-  // console.log(Book);
+  const Book = await getBook("681ca52bab3560fb0a40d969");
+  console.log(Book);
 
-  // const updatedBook = await updateBook("681e0add5106818c667e2504", {
+  // const updatedBook = await updateBook("68224a3b9c7ba582129d9501", {
   //   available: false,
   // });
   // console.log(updatedBook);
 
-  // const deletedBook = await deleteBook("681d44a8e27a8373002381c9");
+  // const deletedBook = await deleteBook("682348c1adf27befdcc7af39");
   // console.log(deletedBook);
 };
 
