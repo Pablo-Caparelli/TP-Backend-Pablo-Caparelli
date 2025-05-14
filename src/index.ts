@@ -169,31 +169,30 @@ const main = async () => {
   await connectMongoDb();
 
   // const savedBook = await addBook({
-  //   title: "Antes del fin",
-  //   author: "Ernesto Sabato",
-  //   publishedYear: 1998,
-  //   gender: "Ensayo",
+  //   title: "Don Quijote de la Mancha",
+  //   author: "Miguel de Cervantes",
+  //   publishedYear: 1605,
+  //   gender: "Novela",
   //   language: "Español",
-  //   country: "Argentina",
+  //   country: "España",
   //   coverImage:
-  //     "https://images.cdn1.buscalibre.com/fit-in/360x360/4e/b8/4eb8a78cb7dbfba5cfab95b7308c38d9.jpg",
+  //     "https://images.cdn2.buscalibre.com/fit-in/360x360/fa/9e/fa9e5a2e42c4923ec4bcfcc194be8b2a.jpg",
   //   available: true,
   // });
-
   // console.log(savedBook);
 
   // const Books = await getBooks();
   // console.log(Books);
 
-  // const Book = await getBook("68239dfbd2d2c93c06200527");
+  // const Book = await getBook("6823b7db5bd387f54abb675b");
   // console.log(Book);
 
-  // const updatedBook = await updateBook("68239dfbd2d2c93c06200527", {
+  // const updatedBook = await updateBook("6824ecacfa81245b24890943", {
   //   available: false,
   // });
   // console.log(updatedBook);
 
-  // const deletedBook = await deleteBook("68239dfbd2d2c93c06200527");
+  // const deletedBook = await deleteBook("6823a1987ca00381a4d2c444");
   // console.log(deletedBook);
 };
 
